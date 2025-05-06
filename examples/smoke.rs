@@ -4,16 +4,17 @@ extern crate purua;
 fn main() {
     let source = r#"
         print("Hello, world!")
-        local x = 42
-        if x > 0 then
-            print("x is positive")
-        else
-            print("x is non-positive")
-        end
     "#;
 
     match lunar_lang::lua::loader::load_string(source) {
-        Ok(program) => println!("Parsed program: {:?}", program),
+        Ok(program) => {
+            // println!("Parsed program: {:?}", &program);
+            let mut walker = lunar_lang::lua::walker::Walker::new();
+            walker.walk(&program.block);
+            for msg in walker.msg_stack {
+                println!("MSG: {}", msg);
+            }
+        },
         Err(e) => eprintln!("Error parsing program: {}", e),
     }
 }
