@@ -3,16 +3,18 @@ extern crate purua;
 
 fn main() {
     let source = r#"
-        print("Hello, world!")
-    "#;
+for i = 1, 5 do
+   print "hello, world\n"
+end
+"#;
 
     match lunar_lang::lua::loader::load_string(source) {
         Ok(program) => {
-            // println!("Parsed program: {:?}", &program);
+            println!("Parsed program: {:?}", &program);
             let mut walker = lunar_lang::lua::walker::Walker::new();
             walker.walk(&program.block);
-            for msg in walker.msg_stack {
-                println!("MSG: {}", msg);
+            for (i, msg) in walker.msg_stack.iter().enumerate() {
+                println!("MSG: {:<04}: {:?}", i, msg);
             }
         },
         Err(e) => eprintln!("Error parsing program: {}", e),
