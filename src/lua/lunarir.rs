@@ -12,7 +12,7 @@ pub enum LunarIR {
     ChunkStart(usize),
     ChunkEnd,
     Local(usize),
-    ForStart,
+    ForStart(usize),
     ForParam(usize, usize, usize),
     ForEnd,
     Enter(u32),

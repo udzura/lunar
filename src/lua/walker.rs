@@ -113,7 +113,14 @@ impl Walker {
                     Some(expr) => self.ensure_expr_as_number(expr),
                     None => 1.0,
                 } as usize;
-                self.push_msg(LunarIR::ForStart);
+
+                self.push_msg(LunarIR::StoreSym(
+                    self.idx_of_ireps[&self.current_irep].syms,
+                    "each".to_string(),
+                ));
+                self.push_msg(LunarIR::ForStart(self.idx_of_ireps[&self.current_irep].syms));
+                self.idx_of_ireps.get_mut(&self.current_irep).unwrap().syms += 1;
+
                 self.push_msg(LunarIR::ForParam(
                     begin,
                     end,
