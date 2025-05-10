@@ -9,7 +9,7 @@ license = "BSD-3-Clause"
 readme = "README.md"
 repository = "https://github.com/udzura/lunar-lang"
 keywords = ["mruby", "lua", "compiler", "bytecodes"]
-categories = ["compiler"]
+categories = ["compilers"]
 
 [dependencies]
 clap = { version = "4.5.37", features = ["cargo"] }
