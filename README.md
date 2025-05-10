@@ -1,4 +1,5 @@
-# Lunar: Lua is Not A Ruby!
+# Lunar: Lua is Not A Ruby! [![lunar-lang at crates.io](https://img.shields.io/crates/v/lunar-lang.svg)](https://crates.io/crates/lunar-lang) [![lunar-lang at docs.rs](https://docs.rs/lunar-lang/badge.svg)](https://docs.rs/lunar-lang)
+
 
 **Lunar** is a compiler intended to allow Lua scripts to be executed in Ruby.
 
