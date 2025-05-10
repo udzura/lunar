@@ -60,4 +60,4 @@ For now, it's just a toy program :)
 
 ## License
 
-Please see [LICENSE](https://www.google.com/search?q=./LICENSE).
+Please see [LICENSE](./LICENSE).
