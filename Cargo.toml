@@ -7,7 +7,7 @@ description = "Lunar is a compiler that generate mruby bytecodes from Lua script
 documentation = "https://docs.rs/lunar-lang/latest/"
 license = "BSD-3-Clause"
 readme = "README.md"
-repository = "https://github.com/udzura/lunar-lang"
+repository = "https://github.com/udzura/lunar"
 keywords = ["mruby", "lua", "compiler", "bytecodes"]
 categories = ["compilers"]
 
