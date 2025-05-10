@@ -4,7 +4,7 @@ extern crate purua;
 fn main() {
     let source = r#"
 for i = 1, 5 do
-   print "hello, world\n "
+   print "hello, world\n"
 end
 "#;
     // let source = r#"print "hello, world\n""#;
@@ -33,8 +33,7 @@ end
             let mut packer = lunar_lang::rite::packer::RitePacker::new();
             match packer.pack(&mruby) {
                 Ok(_) => {
-                    let packed = &packer.buf;
-                    println!("Packed binary: {:?}", packed);
+                    // let packed = &packer.buf;
                 }
                 Err(e) => eprintln!("Error packing: {}", e),
             }

@@ -40,9 +40,9 @@ checksum = "b4596b6d070b27117e987119b4dac604f3c58cfb0b191112e24771b2faeac1a6"
 
 [[package]]
 name = "purua"
-version = "0.2.0-rc2"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0d0b50d523d60af394c9342e1c1204942e6cb8ecfb70e2e49b7889313d05b4c4"
+checksum = "39aa2a6f5917c8063f56e455b8135c5f49a2af4ad17f59b8e7863a57d4974534"
 dependencies = [
  "combine",
 ]

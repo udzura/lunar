@@ -17,9 +17,6 @@ impl Bytecode {
             Operand::Z => {}
             Operand::B(b) => bytes.push(b),
             Operand::BB(b1, b2) => {
-                if self.op == OpCode::BLOCK {
-                    dbg!(self);
-                }
                 bytes.push(b1);
                 bytes.push(b2);
             }
@@ -43,7 +40,6 @@ impl Bytecode {
             Operand::W(w) => {
                 // should be truncated into u24...
                 let operand: [u8; 4] = w.to_be_bytes();
-                dbg!(w, &operand);
                 bytes.extend_from_slice(&operand[1..=3]);
             }
         }

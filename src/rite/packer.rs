@@ -75,7 +75,6 @@ impl RitePacker {
             // fill in the size, ilen field lator
             let mut insn: Vec<u8> = Vec::new();
 
-            dbg!(&rep.borrow().insn);
             for i in rep.borrow().insn.iter() {
                 let mut insn_bytes = i.to_bytes_vec();
                 insn.append(&mut insn_bytes);

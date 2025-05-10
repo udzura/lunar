@@ -143,10 +143,9 @@ impl Walker {
     pub fn walk_args(&mut self, args: &Args) {
         match args {
             Args::ArgsString(string) => {
-                let content = &string[1..(string.len()-1)];
                 self.push_msg(LunarIR::PoolString(
                     self.idx_of_ireps[&self.current_irep].pool,
-                    content.to_owned(),
+                    string.to_owned(),
                 ));
                 self.push_msg(LunarIR::FunctionCallArg(
                     0,

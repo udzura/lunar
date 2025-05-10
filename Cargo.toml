@@ -5,7 +5,7 @@ edition = "2021"
 
 [dependencies]
 plain = "0.2.3"
-purua = "0.2.0-rc2"
+purua = "0.2"
 
 [[bin]]
 path = "src/main.rs"
