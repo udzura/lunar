@@ -1,10 +1,15 @@
 [package]
 name = "lunar-lang"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Uchio Kondo <udzura@udzura.jp>"]
-description = "mruby/edge is yet another mruby that is specialized for running on WASM"
+description = "Lunar is a compiler that generate mruby bytecodes from Lua script."
+documentation = "https://docs.rs/lunar-lang/latest/"
 license = "BSD-3-Clause"
+readme = "README.md"
+repository = "https://github.com/udzura/lunar-lang"
+keywords = ["mruby", "lua", "compiler", "bytecodes"]
+categories = ["compiler"]
 
 [dependencies]
 clap = { version = "4.5.37", features = ["cargo"] }
