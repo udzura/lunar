@@ -131,6 +131,8 @@ pub fn transform(lunar_ir: &[LunarIR]) -> Vec<Rc<RefCell<IrepBase>>> {
                 // TODO: get argsize from ENTER valus
                 current.borrow_mut().regs += 1;
                 current.borrow_mut().locals += 1;
+                // TODO: what is this?
+                current.borrow_mut().locals += 2;
                 // set regs = locals + 1
                 current.borrow_mut().regs += 1;
             },

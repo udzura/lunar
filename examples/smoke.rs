@@ -4,7 +4,7 @@ extern crate purua;
 fn main() {
     let source = r#"
 for i = 1, 5 do
-   print "hello, world\n"
+   print "hello, world\n "
 end
 "#;
     // let source = r#"print "hello, world\n""#;

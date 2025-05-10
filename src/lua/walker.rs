@@ -128,7 +128,8 @@ impl Walker {
                 ));
                 // TODO: token is_a varname of each,
                 // which can be used inside of this block!
-                self.push_msg(LunarIR::Block(self.idx_of_irep));
+                // TODO: real handle of children reps... :(
+                self.push_msg(LunarIR::Block(self.idx_of_irep - 1));
                 self.walk_block(block);
                 self.push_msg(LunarIR::ForEnd);
             },
