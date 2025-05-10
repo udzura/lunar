@@ -109,7 +109,7 @@ checksum = "7943c866cc5cd64cbc25b2e01621d07fa8eb2a1a23160ee81ce38704e97b8ecf"
 
 [[package]]
 name = "lunar-lang"
-version = "0.1.0-alpha1"
+version = "0.1.0"
 dependencies = [
  "clap",
  "plain",
