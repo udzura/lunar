@@ -6,9 +6,54 @@ pub struct Bytecode {
     pub operand: Operand,
 }
 
+impl Bytecode {
+    pub fn new(op: OpCode, operand: Operand) -> Self {
+        Bytecode { op, operand }
+    }
+
+    pub fn to_bytes_vec(&self) -> Vec<u8> {
+        let mut bytes = vec![self.op as u8];
+        match self.operand {
+            Operand::Z => {}
+            Operand::B(b) => bytes.push(b),
+            Operand::BB(b1, b2) => {
+                if self.op == OpCode::BLOCK {
+                    dbg!(self);
+                }
+                bytes.push(b1);
+                bytes.push(b2);
+            }
+            Operand::BBB(b1, b2, b3) => {
+                bytes.push(b1);
+                bytes.push(b2);
+                bytes.push(b3);
+            }
+            Operand::BS(b1, s) => {
+                bytes.push(b1);
+                bytes.extend_from_slice(&s.to_be_bytes());
+            }
+            Operand::BSS(b1, s1, s2) => {
+                bytes.push(b1);
+                bytes.extend_from_slice(&s1.to_be_bytes());
+                bytes.extend_from_slice(&s2.to_be_bytes());
+            }
+            Operand::S(s) => {
+                bytes.extend_from_slice(&s.to_be_bytes());
+            }
+            Operand::W(w) => {
+                // should be truncated into u24...
+                let operand: [u8; 4] = w.to_be_bytes();
+                dbg!(w, &operand);
+                bytes.extend_from_slice(&operand[1..=3]);
+            }
+        }
+        bytes
+    }
+}
+
 #[allow(non_camel_case_types)]
 #[repr(u8)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub enum OpCode {
     NOP,
     MOVE,

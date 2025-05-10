@@ -7,6 +7,7 @@ for i = 1, 5 do
    print "hello, world\n"
 end
 "#;
+    // let source = r#"print "hello, world\n""#;
 
     match lunar_lang::lua::loader::load_string(source) {
         Ok(program) => {
@@ -27,6 +28,20 @@ end
                 for (j, msg) in rep.borrow().insn.iter().enumerate() {
                     println!("IREP: {:<04}:{:<04} {:?}", i, j, msg);
                 }
+            }
+
+            let mut packer = lunar_lang::rite::packer::RitePacker::new();
+            match packer.pack(&mruby) {
+                Ok(_) => {
+                    let packed = &packer.buf;
+                    println!("Packed binary: {:?}", packed);
+                }
+                Err(e) => eprintln!("Error packing: {}", e),
+            }
+
+            match packer.write_to_file("test.mrb") {
+                Ok(_) => println!("Packed binary written to ./test.mrb"),
+                Err(e) => eprintln!("Error writing to file: {}", e),
             }
         },
         Err(e) => eprintln!("Error parsing program: {}", e),

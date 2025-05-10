@@ -101,14 +101,12 @@ pub fn transform(lunar_ir: &[LunarIR]) -> Vec<Rc<RefCell<IrepBase>>> {
                             first_reg = reg as isize;
                         }
                     }
-                    current.borrow_mut().regs += 1;
-                    let reg = current.borrow().regs;
                     current.borrow_mut().insn.push(Bytecode {
                         op: OpCode::ARRAY,
-                        operand: Operand::BBB(reg as u8, first_reg as u8, pushed as u8)
+                        operand: Operand::BB(first_reg as u8, pushed as u8)
                     });
 
-                    state = TransformState::InFor { reg, sym };
+                    state = TransformState::InFor { reg: first_reg as usize, sym };
                 } else {
                     panic!("Invalid state: expected InFor context");
                 }
@@ -206,14 +204,18 @@ pub fn transform(lunar_ir: &[LunarIR]) -> Vec<Rc<RefCell<IrepBase>>> {
                 current.borrow_mut().pool.insert(*idx, value.clone());
             },
             LunarIR::Block(b) => {
-                current.borrow_mut().regs += 1;
-                let reg = current.borrow().regs;
-                current.borrow_mut().insn.push(Bytecode {
-                    op: OpCode::BLOCK,
-                    operand: Operand::BB(reg as u8, *b as u8)
-                });
-                if let TransformState::InFor{ reg: _, sym } = state {
-                    state = TransformState::InFor { reg, sym };
+                if let TransformState::InFor{ reg, sym: _ } = state {
+                    current.borrow_mut().insn.push(Bytecode {
+                        op: OpCode::BLOCK,
+                        operand: Operand::BB(reg as u8 + 1, *b as u8)
+                    });
+                } else {
+                    current.borrow_mut().regs += 1;
+                    let reg = current.borrow().regs;
+                    current.borrow_mut().insn.push(Bytecode {
+                        op: OpCode::BLOCK,
+                        operand: Operand::BB(reg as u8, *b as u8)
+                    });
                 }
             },
             LunarIR::NoReturn => {
